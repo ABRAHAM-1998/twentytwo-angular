@@ -1,0 +1,96 @@
+<div layout-gt-sm="column">
+	<mat-card flex-gt-sm>
+		<div layout-gt-xs="row">
+			<mat-card>
+				<mat-card-title-group>
+					<mat-card-title> {{pdata['name']}}</mat-card-title>
+					<mat-card-subtitle>kuttu in lobby</mat-card-subtitle>
+					<!-- <img mat-card-lg-image src="https://placekitten.com/g/400/200"> -->
+					<img mat-card-lg-image [src]="transform()">
+					<input #uploader hidden type="file" (change)="fileChangeEvent($event)" />
+					<div *ngIf=" loading == false" class="circles">
+						<div class="primary"></div>
+						<div class="primary"></div>
+						<div class="primary"></div>
+						<div class="primary"></div>
+						<div class="alternate"></div>
+						<div class="alternate"></div>
+						<div class="alternate"></div>
+						<div class="alternate"></div>
+					</div>
+
+
+
+
+					<!-- IMges -->
+					<!-- <img [src]={{pdata['imgurl']}}> -->
+					<!-- <img mat-card-lg-image [src]="transform()">
+							
+							<img mat-card-lg-image *ngFor='let url of urls' [src]="url" height="200"> <br />
+
+							<input hidden #uploader type='file' (change)="onSelectFile($event)" multiple> -->
+					<!-- <button (click)="uploadFiles()">uplisdsf</button> -->
+
+				</mat-card-title-group>
+			</mat-card>
+		</div>
+		<mat-divider></mat-divider>
+		<image-cropper *ngIf="imagecrop == true" mat-card-lg-image [imageChangedEvent]="imageChangedEvent" [resizeToWidth]="256" [imageQuality]='50'
+			[maintainAspectRatio]="true" [aspectRatio]="1/1" format="png" (imageCropped)="imageCropped($event)"
+			(imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()">
+
+		</image-cropper>
+		<img *ngIf="imagecrop == true" mat-card-lg-image [src]="croppedImage" />
+		
+		
+
+		<mat-card-content>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-button color="warn" class="text-upper" (click)="uploadFiles()">Update</button>
+			<button mat-button class="text-upper" (click)="uploader.click()">select image</button>
+		</mat-card-actions>
+	</mat-card>
+	<mat-card flex-gt-sm>
+		<mat-card-title>{{pdata['username']}}</mat-card-title>
+		<mat-card-subtitle>About Me</mat-card-subtitle>
+		<mat-divider></mat-divider>
+		<mat-list>
+			<h3 matSubheader>Metadata</h3>
+			<mat-list-item>
+				<mat-icon matListAvatar>account_box</mat-icon>
+				<h4 matLine>{{pdata['name']}}</h4>
+				<p matLine>Owner</p>
+			</mat-list-item>
+			<mat-divider matInset></mat-divider>
+			<mat-list-item>
+				<mat-icon matListAvatar>description</mat-icon>
+				<h4 matLine>{{pdata['username']}}</h4>
+				<p matLine>Description</p>
+			</mat-list-item>
+			<mat-divider matInset></mat-divider>
+			<mat-list-item>
+				<mat-icon matListAvatar>vpn_key</mat-icon>
+				<h4 matLine>{{pdata['email']}}</h4>
+				<p matLine>API Key</p>
+			</mat-list-item>
+			<mat-divider></mat-divider>
+			<h3 matSubheader>Dates</h3>
+			<mat-list-item>
+				<mat-icon matListAvatar>access_time</mat-icon>
+				<h4 matLine>{{pdata['dob']}}</h4>
+				<p matLine>Last Updated</p>
+			</mat-list-item>
+			<mat-divider matInset></mat-divider>
+			<mat-list-item>
+				<mat-icon matListAvatar>today</mat-icon>
+				<h4 matLine>{{pdata['mobile']}}</h4>
+				<p matLine>Created</p>
+			</mat-list-item>
+		</mat-list>
+		<mat-divider></mat-divider>
+		<mat-card-actions>
+			<button mat-button color="accent" class="text-upper">Edit</button>
+		</mat-card-actions>
+	</mat-card>
+</div>

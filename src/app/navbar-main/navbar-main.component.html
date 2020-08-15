@@ -1,0 +1,61 @@
+<mat-sidenav-container fullscreen>
+	<mat-sidenav #sidenav mode="side" opened class="app-sidenav">
+		<div class="imagecenter">
+			<img width="190" mat-card-lg-image class="image" [src]="transform()">
+		</div>
+		<mat-nav-list>
+			<h4 matLine>{{pdata['name']}}</h4>
+
+			<a mat-list-item [routerLink]="[{ outlets: { 'auxialry': 'home' } }]" routerLinkActive="active-list-item">
+				<h2 matLine>FEEDS</h2>
+				<mat-icon matListIcon>speed</mat-icon>
+			</a>
+			<a mat-list-item [routerLink]="[{ outlets: { 'auxialry': 'profile' } }]"
+				routerLinkActive="active-list-item">
+				<h2 matLine>MY PROFILE</h2>
+				<mat-icon matListIcon>add_shopping_cart</mat-icon>
+			</a>
+			<a mat-list-item [routerLink]="[{ outlets: { 'auxialry': 'friends' } }]"
+				routerLinkActive="active-list-item">
+				<h2 matLine> FRIEND SEARCH</h2>
+				<mat-icon matListIcon>category</mat-icon>
+			</a>
+			<a mat-list-item routerLink="/ssss" routerLinkActive="active-list-item">
+				<h2 matLine>Chats</h2>
+				<mat-icon matListIcon>engineering</mat-icon>
+			</a>
+			<a mat-list-item [routerLink]="[{ outlets: { 'auxialry': 'createpost' } }]"
+				routerLinkActive="active-list-item">
+				<h2 matLine>CREATE POST</h2>
+				<mat-icon matListIcon>perm_identity</mat-icon>
+			</a>
+			<a mat-list-item routerLink="/retailer">
+				<h2 matLine>ACCOUT SETTINGS</h2>
+				<mat-icon matListIcon>settings</mat-icon>
+			</a>
+		</mat-nav-list>
+	</mat-sidenav>
+	<mat-sidenav-content>
+		<mat-toolbar color="" class="mat-elevation-z3" style="position: fixed;z-index: 200;">
+			<button mat-icon-button (click)="sidenav.toggle()">
+
+				<mat-icon>menu</mat-icon>
+			</button>
+			<h3 style="color: blue;">TWENTY TWO</h3>
+
+
+			<span class="material-icons span4">
+				account_circle
+			</span>
+			<mat-icon matListIcon class="span2">settings</mat-icon>
+			<mat-icon matlistIcon class="span3" (click)="fn_logout()"> notifications</mat-icon>
+
+
+
+		</mat-toolbar>
+		<div class="app-content mt-5">
+			<router-outlet name="auxialry"></router-outlet>
+
+		</div>
+	</mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,45 @@
+.centerimg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    // padding: 5%;
+  }
+  .span1{
+    position: fixed;
+    right: 30px; 
+    color: gray;
+
+  }
+  .span2{
+    position: fixed;
+    right: 60px; 
+    color: gray;
+
+  }
+  .span3{
+    position: fixed;
+    right: 100px;
+    color: gray;
+
+  }
+  .span4{
+    position: fixed;
+    right: 130px;
+    color: blue;
+  }
+  .image {
+    background-size: cover;
+    border-radius: 50%;;
+    width: 100px;
+    height: 100px;
+    margin-left: 20%;
+    margin-top: 10px;
+
+  }
+  h4{
+    margin-left:20%;  
+    color: red;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  

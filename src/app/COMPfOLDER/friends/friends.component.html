@@ -1,0 +1,22 @@
+<h3 style="margin-top: 10px;">Find friends</h3>
+<div class="example-form ">
+    <mat-form-field class="example-full-width">
+
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of options" [value]="option.name">
+                {{option.name}}
+          
+                <button class="sendreqbtn" mat-raised-button color="warn">send Request</button>
+                <button class="viewbtn" (click)="fn_View(option)"  mat-raised-button color="primary">View profile</button>
+
+
+            </mat-option>
+        </mat-autocomplete>
+
+        <input matInput type="text" class="form-control  " [matAutocomplete]="auto" placeholder="search with name or username"
+            (input)="valuechangeMaterial($event.target.value)" (input)="fnSearch()" [(ngModel)]="friends.search">
+
+    </mat-form-field>
+
+
+</div>
