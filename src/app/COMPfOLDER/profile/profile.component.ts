@@ -44,8 +44,7 @@ export class ProfileComponent implements OnInit {
   loadImageFailed() {
     // show message
   }
-  public data = { pdata: localStorage.getItem('id') }
-
+  
 
   // public data = { pdata:this.fromParent}
   public pdata:any=[]
@@ -54,11 +53,9 @@ export class ProfileComponent implements OnInit {
     this.loading = false;
 
 
-    this.api.methPOst('/userp', this.data).subscribe((res) => {
-      // console.log(res);
+    this.api.methPOst('/userp', { 'id': this.fromParent._id }).subscribe((res) => {
       this.pdata = res['arrList']
        this.loading = res['apistatus'];
-      console.log(this.pdata)
     }, (error) => {
       // console.log(error, 'this is my error')
     })

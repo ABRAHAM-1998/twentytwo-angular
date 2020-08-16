@@ -13,13 +13,14 @@ export class FriendsComponent implements OnInit {
 
   constructor(private api: ApiserviceService, private modalService: NgbModal) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { this.fn_list();
   }
 
   public options: string[];
   public friends: any = {
     search: ''
   }
+  public friendlist:any=[];
 
 
   fnSearch() {
@@ -31,13 +32,21 @@ export class FriendsComponent implements OnInit {
 
   valuechangeMaterial(e) {
     this.friends.search = e;
-    console.log(this.friends);
+    // console.log(this.friends);
   }
 
   fn_View(id) {
-    console.log(id._id)
-    const modalRef = this.modalService.open(ProfileComponent, { size: 'sm', centered: true });
-    modalRef.componentInstance.fromParent = id._id;
+    const modalRef = this.modalService.open(ProfileComponent, { size: 'md', centered: true });
+    let data =id
+    modalRef.componentInstance.fromParent = data;
 
   }
+  fn_list() {
+    this.api.methPOst('friends',this.options).subscribe((res) => {
+      this.friendlist = res['data']
+      console.log(this.friendlist)
+
+    })
+  }
+
 }

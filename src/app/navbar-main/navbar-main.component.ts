@@ -23,7 +23,7 @@ export class NavbarMainComponent implements OnInit {
   }
   public pdata =[]
   fn_UserProfile() {
-    let data ={ pdata: localStorage.getItem('id') }
+    let data ={ id: localStorage.getItem('id') }
 
     this.api.post('/userp',data).subscribe((res) => {
       // console.log(res);
