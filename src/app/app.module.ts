@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 
-import { ApiserviceService } from "./apiservice.service";
+import { ApiserviceService } from "./SHARED/apiservice.service";
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,7 +29,7 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from "@angular/material/toolbar";;
 import { MatListModule } from "@angular/material/list";
 import { HomeComponent } from './COMPfOLDER/home/home.component';
-import { ProfileComponent } from './COMPfOLDER/profile/profile.component';
+import { ProfileComponent } from './COMPfOLDER/PROFILE-C/profile/profile.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { CreatepostComponent } from './COMPfOLDER/createpost/createpost.component';
 import { FormsModule } from "@angular/forms";
@@ -37,6 +37,12 @@ import { FormsModule } from "@angular/forms";
 import {MatGridListModule} from '@angular/material/grid-list';
 import { FriendsComponent } from './COMPfOLDER/friends/friends.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { UserprofileComponent } from './COMPfOLDER/PROFILE-C/userprofile/userprofile.component';
+
+import {  UserService, AlwaysAuthGuard, AlwaysAuthChildrenGuard, OnlyLoggedInUsersGuard, } from './SHARED/authgurd.service';
+// import { AuthGuardService } from "module";
+
+
 
 // ...
 
@@ -50,7 +56,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     HomeComponent,
     ProfileComponent,
     CreatepostComponent,
-    FriendsComponent
+    FriendsComponent,
+    UserprofileComponent
   ],
   imports: [
     HttpClientModule,
@@ -88,9 +95,16 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     NgbModule,
  
   ],
+  providers: [
+    UserService,
+    AlwaysAuthGuard,
+    AlwaysAuthChildrenGuard,
+    OnlyLoggedInUsersGuard,
+    ApiserviceService
+
+  ],
   exports:[],
   
-  providers: [ApiserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule {  }

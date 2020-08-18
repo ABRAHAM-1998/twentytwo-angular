@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiserviceService } from 'src/app/apiservice.service';
+import { ApiserviceService } from '../../SHARED/apiservice.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ProfileComponent } from '../profile/profile.component';
+import { ProfileComponent } from '../PROFILE-C/profile/profile.component';
+import { UserprofileComponent } from '../PROFILE-C/userprofile/userprofile.component';
 
 
 @Component({
@@ -24,8 +25,8 @@ export class FriendsComponent implements OnInit {
 
 
   fnSearch() {
-    this.api.frndSearch(this.friends).subscribe((res) => {
-      console.log(res)
+    this.api.methPOst('frndSearch',this.friends).subscribe((res) => {
+      // console.log(res)
       this.options = res['data']
     })
   }
@@ -36,15 +37,15 @@ export class FriendsComponent implements OnInit {
   }
 
   fn_View(id) {
-    const modalRef = this.modalService.open(ProfileComponent, { size: 'md', centered: true });
-    let data =id
+    const modalRef = this.modalService.open(UserprofileComponent, { size: 'lg', centered: true });
+    let data =id._id
     modalRef.componentInstance.fromParent = data;
 
   }
   fn_list() {
     this.api.methPOst('friends',this.options).subscribe((res) => {
       this.friendlist = res['data']
-      console.log(this.friendlist)
+      // console.log(this.friendlist)
 
     })
   }

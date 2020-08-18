@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ApiserviceService } from "../../apiservice.service";
+import { ApiserviceService } from '../../SHARED/apiservice.service';
+
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
-import { error } from 'protractor';
-import { invalid } from '@angular/compiler/src/render3/view/util';
 import { Router } from '@angular/router';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { fn } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -33,6 +31,7 @@ export class RegisterComponent implements OnInit {
     username: ['', Validators.required],
     password: ['', Validators.required],
     repassword: ['', Validators.required],
+    imgurl:''
   });
   public checck = {
     name: true,
@@ -85,7 +84,7 @@ export class RegisterComponent implements OnInit {
         if (res['apistatus'] == true) {
           this.form.reset()
           console.log('succes registration completed');
-          this.route.navigate(['login']);
+          this.fn_reDirect();
 
         } else {
           this.fn_chechErr(res)
@@ -133,7 +132,7 @@ export class RegisterComponent implements OnInit {
     this.modalservice.dismissAll()
   }
   fn_reDirect() {
-    this.route.navigate(['/login'])
+    this.route.navigate(['login'])
 
     console.log('redirected');
 
@@ -167,13 +166,5 @@ export class RegisterComponent implements OnInit {
     }
 
   }
+  
 }
-
-
-// if(error['error'].apistatus ==false){
-//   console.log(error.error.arrMsg)
-// }else if(error['error'].arrMsg){
-//   console.log('name errorr')
-// }else{
-//   console.log('else')
-// }

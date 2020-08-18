@@ -1,6 +1,7 @@
 import { Component, AfterContentInit, OnInit, ViewChild } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { ApiserviceService } from 'src/app/apiservice.service';
+import { ApiserviceService } from '../../SHARED/apiservice.service';
+import { Router } from '@angular/router';
 
 
 
@@ -11,7 +12,8 @@ import { ApiserviceService } from 'src/app/apiservice.service';
 })
 export class CreatepostComponent implements OnInit {
 
-  constructor(private api:ApiserviceService
+  constructor(private api:ApiserviceService,
+    private route:Router
   ) { }
 
   breakpoint: number;
@@ -58,6 +60,9 @@ export class CreatepostComponent implements OnInit {
 
     this.api.methPOst('newpost',this.post).subscribe((res)=>{
       console.log(res)
+      if(res['apistatus']== true){
+        this.route.navigate(['mainui'])
+      }
     })
 
   }

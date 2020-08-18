@@ -1,8 +1,8 @@
 import { Component, OnInit ,Input} from '@angular/core';
-import { ApiserviceService } from "../../apiservice.service";
-import { threadId } from 'worker_threads';
+import { ApiserviceService } from "../../../SHARED/apiservice.service";
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { DataService } from "../../../SHARED/data.service";
 
 
 
@@ -13,7 +13,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 })
 export class ProfileComponent implements OnInit {
   @Input() fromParent;
-  constructor(private api: ApiserviceService, private sanitizer: DomSanitizer) { }
+  constructor(private api: ApiserviceService, private sanitizer: DomSanitizer,private data :DataService) { }
 
 
   transform() {
@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.fn_UserProfile();
+    this.data.currentMessage.subscribe(message => console.log(message,'dtata transfer'))
   }
   public imagecrop = false;
   public loading = true;
@@ -70,7 +71,7 @@ export class ProfileComponent implements OnInit {
       id: localStorage.getItem('id')
     }
 
-    this.api.fun_apiPostImage(data).subscribe((body) => {
+    this.api.methPOst('',data).subscribe((body) => {
       console.log(body)
       if (body) {
         this.fn_UserProfile();

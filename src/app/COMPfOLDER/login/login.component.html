@@ -18,7 +18,7 @@
       </div>
       <div *ngIf = 'data == false'>
         <p style="color: red;">Login Faiiled !</p>
-        <p routerLink="register">REGISTER NOW</p>
+        <p (click)="fn_register()">REGISTER NOW</p>
       </div>
     </form>
   </mat-card-content>

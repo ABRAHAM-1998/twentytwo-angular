@@ -7,7 +7,7 @@
                 {{option.name}}
 
                 <button class="sendreqbtn" mat-stroked-button color="warn">send Request</button>
-                <button class="viewbtn" (click)="fn_View(option._id)" mat-stroked-button color="primary">View
+                <button class="viewbtn" (click)="fn_View(option)" mat-stroked-button color="primary">View
                     profile</button>
 
 
@@ -19,7 +19,7 @@
             (input)="fnSearch()" [(ngModel)]="friends.search">
     </mat-form-field>
 </div>
-  <mat-list>
+<!-- <mat-list>
 	<mat-list-item *ngFor="let friend of friendlist">
 		<img matListAvatar src="{{friend.imgurl}}" alt="Photo">
 		<h3 matLine> {{friend.name}} </h3>
@@ -31,4 +31,14 @@
         </p>
         <mat-divider></mat-divider>
 	</mat-list-item>
-</mat-list>
+</mat-list> -->
+<mat-card class="example-card" *ngFor="let friend of friendlist">
+    <mat-card-header>
+        <mat-icon (click)="fn_View(friend)">chat_bubble_outline</mat-icon>
+        <mat-icon (click)="fn_View(friend)">visibility</mat-icon>
+
+        <img mat-card-avatar src="{{friend.imgurl}}">
+        <mat-card-title>{{friend.name}}</mat-card-title>
+        <mat-card-subtitle>{{friend.username}}</mat-card-subtitle>
+    </mat-card-header>
+</mat-card>

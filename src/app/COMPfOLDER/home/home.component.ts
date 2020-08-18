@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiserviceService } from 'src/app/apiservice.service';
-import { threadId } from 'worker_threads';
+import { ApiserviceService } from '../../SHARED/apiservice.service';
 
 @Component({
   selector: 'app-home',
@@ -20,10 +19,10 @@ export class HomeComponent implements OnInit {
     let data = {
     }
     this.api.methPOst('getposts', data).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.data = res['data'];
       this.data.forEach(element => {
-        console.log(element.postdetails);
+        // console.log(element.postdetails);
         this.postdetails.push(element.postdetails)
 
       });

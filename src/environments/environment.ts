@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  apiurl : 'http://localhost',
-  port:'4201'
+  apiUrl :  'http://twenty-two.herokuapp.com/api',
 };
 
 /*

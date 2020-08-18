@@ -1,0 +1,20 @@
+// mat-card-subtitle{
+//     font-size: 10px;
+//   }
+  .image {
+    background-size: cover;
+    border-radius: 50%;;
+    width: 100px;
+    height: 100px;
+    margin-left: 20%;
+    margin-top: 10px;
+
+  }
+  mat-card-title-group{
+    display: flex;
+    justify-content: center;
+  }
+  mat-card-actions{
+    display: flex;
+    justify-content: center;
+  }

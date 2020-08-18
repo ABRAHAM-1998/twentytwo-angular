@@ -1,13 +1,14 @@
 import { Component, OnInit, Output, Input, } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ApiserviceService } from "../../apiservice.service";
+import { ApiserviceService } from '../../SHARED/apiservice.service';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
 
@@ -22,20 +23,27 @@ export class LoginComponent implements OnInit {
   public data = true;
 
   submit() {
-    this.api.login(this.form.value).subscribe(data => {
+    this.api.methPOst('login',this.form.value).subscribe(data => {
       this.data = data['apistatus']
       console.log(data)
       if(data['apistatus'] == true){
         localStorage.setItem('token' , data['token']);
         localStorage.setItem('id' , data['id']);
-        this.route.navigate(['/mainui'])
+        if (localStorage.getItem('token') && (localStorage.getItem('id'))) {
+          this.route.navigate(['/mainui'])
+        } else {
+          this.route.navigate(['/login'])
+        }
         
       }else{
-        console.log('false messagw');
+        console.log('LOGIN FAILED');
         
       }
      
     });
+  }
+  fn_register(){
+    this.route.navigate(['register'])
   }
 
 }
